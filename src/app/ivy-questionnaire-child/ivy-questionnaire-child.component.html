@@ -1,0 +1,36 @@
+<app-ivy-questionnaire-parent [index]="index" parentPanelClass="ivy-questionaire-child-panel-class bold-font" [expanded]="expanded"
+    [parentTaskPanelData]="parentTaskPanelData" parentPanelHeaderClass="bold-font">
+    <div class="child-component">
+        <mat-accordion  *ngFor="let currentQuestion of questionsArray; let i = index;" style="margin: 10px;">
+            <mat-expansion-panel #modelChild [expanded]="currentQuestion.expanded"
+                class="yellow-border-left ivy-questionaire-child-panel-class" hideToggle>
+                <mat-expansion-panel-header class="task-panel-header-color-light-grey bold-font">
+                    <mat-panel-title style="justify-content: space-between;">
+                        <div>
+                            <mat-icon *ngIf="currentQuestion.showIcon" [svgIcon]="currentQuestion.icon">
+                                {{currentQuestion.icon}}</mat-icon>
+                            {{currentQuestion.nodeText}}
+                        </div>
+                        <div>
+                            {{currentQuestion.headerText}}
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="ivy-questionaire-child-content-class">
+                    <p></p>
+                    <mat-button-toggle-group [disabled]="currentQuestion.disabled"
+                        [value]="currentQuestion.selectedValue" name="{{currentQuestion.nodeText}}"
+                        aria-label="Font Style">
+                        <mat-button-toggle *ngFor="let curentOption of currentQuestion.answers"
+                            value="{{curentOption.answerText}}"
+                            (change)="onToggleChange($event, curentOption, i, modelChild)">{{curentOption.answerText}}
+                        </mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-action-row style="padding: 10px;">
+            <button mat-button  class="reset-button" (click)="onClickOfReset()">Reset</button>
+        </mat-action-row>
+    </div>
+</app-ivy-questionnaire-parent>

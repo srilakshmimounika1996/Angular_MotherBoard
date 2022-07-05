@@ -1,0 +1,15 @@
+<div *ngIf="parentTaskPanelData.expertDebugTitle">
+    <mat-accordion  >
+        <mat-expansion-panel class="ivy-questionaire-parent-panel-class" [expanded]="expanded" hideToggle>
+            <mat-expansion-panel-header class="bold-font">
+                <mat-panel-title style="justify-content: space-between; background: rgb(255, 255, 255)">
+                    <div>
+                        Expert Debug Defect Group: {{parentTaskPanelData.expertDebugTitle}}
+                    </div>
+                    <div><mat-icon svgIcon="delete" (click)="onDeleteClick()"> delete</mat-icon></div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ng-content select=".child-component"></ng-content>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
