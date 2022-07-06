@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { platform, defect } from '../contants';
 import { environment } from '../../../src/environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-ivy-mbbody-page',
   templateUrl: './ivy-mbbody-page.component.html',
@@ -10,14 +11,21 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class IvyMbBodyPageComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private route: ActivatedRoute) { }
   Platform = platform;
   Defect = defect;
   isExpertTaskPanelDisplay: boolean = false;
   parentTaskPanelData: any = [];
   buttonDisable: boolean = true
+  userName:any;
   errorMessage: any
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.route.queryParams
+      .subscribe(params => {
+        this.userName=params["userName"];
+      }
+    );
+   }
 
 
   MbDataForm = new FormGroup({
@@ -41,7 +49,7 @@ export class IvyMbBodyPageComponent implements OnInit {
       firstSource: this.MbDataForm.value['defectDropdown'],
       secondSource: "",
       itemId: "302607351",
-      username: "MADHU.CHANDRAKANTH",
+      username: this.userName,
       clientId: "17302",
       contractId: "10375",
       locationId: "1444",
@@ -86,7 +94,7 @@ export class IvyMbBodyPageComponent implements OnInit {
       firstSource: answerObj.answerNewDebugFlow,
       secondSource: "",
       itemId: "302607351",
-      username: "MADHU.CHANDRAKANTH",
+      username: this.userName,
       clientId: "17302",
       contractId: "10375",
       locationId: "1444",
