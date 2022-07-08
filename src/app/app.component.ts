@@ -8,6 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppComponent {
   title = 'motherboard_page';
+  bcnValue:any;
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
@@ -26,5 +27,8 @@ export class AppComponent {
     //     this.sanitizer.bypassSecurityTrustResourceUrl(`assets/${svgIcon}.svg`));
     // });
   
+}
+unitData(obj){
+this.bcnValue=obj.ITEM_BCN
 }
 }

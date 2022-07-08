@@ -1,5 +1,4 @@
-<!-- <ngx-loading-spinner [threshold]="200" [timeout]="480000" zIndex="99999999999"></ngx-loading-spinner> -->
-
+<ngx-spinner ></ngx-spinner>
 <mat-drawer-container class="subprocess-containerClass">
   <mat-drawer  class="sidenav left-matdrawer col-md-2 col-sm-12" style="background-color: #464C59;padding: 0 ;min-width: 16.666667%;" position="start"
     mode=side disableClose=true opened="true">
@@ -8,7 +7,7 @@
       <header class="flex_item leftside_header">
         <p class="sidenav-header heading1"
         >BCN : 
-        <span> BCN411111339 </span>
+        <span> {{bcnValue}} </span>
       </p>
       </header>
       <header class="flex_item leftside_header">
@@ -21,7 +20,7 @@
   <mat-drawer-content
   autosize style = "background: rgb(226, 231, 237);
   margin-left: 282px;" >
-    <app-ivy-mbbody-page></app-ivy-mbbody-page>
+    <app-ivy-mbbody-page (unitData)="unitData($event)"></app-ivy-mbbody-page>
   </mat-drawer-content>
 </mat-drawer-container>
 

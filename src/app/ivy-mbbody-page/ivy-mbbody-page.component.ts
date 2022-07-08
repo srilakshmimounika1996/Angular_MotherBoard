@@ -1,5 +1,5 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { platform, defect } from '../contants';
 import { environment } from '../../../src/environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -25,6 +25,7 @@ export class IvyMbBodyPageComponent implements OnInit {
   unitInfo:any;
   unitIdentificationType:any;
   totalExpertDebugList:any;
+  @Output() unitData = new EventEmitter<object>();
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
         this.userName = params["userName"];
@@ -149,7 +150,8 @@ export class IvyMbBodyPageComponent implements OnInit {
       if (this.unitIdentificationType) {
         this.http.get(environment.api_url + "unitinfo/getUnitInfo?unitIdentificationValue=" + identifierValue + "&identificatorType=" + this.unitIdentificationType + "&locationId=" + this.locationId + "&clientId=" + this.clientId + "&contractId=" + this.contractId).subscribe({
           next: (v) => {
-            this.unitInfo = v["data"]
+            this.unitInfo = v["data"];
+            this.unitData.emit(this.unitInfo);
             this.unitInfo["UserName"]=this.userName
             this.http.get(environment.api_url + "metadataprocessor/getJsonReponse?itemId="+identifierValue).subscribe({
               next: (v) => {
