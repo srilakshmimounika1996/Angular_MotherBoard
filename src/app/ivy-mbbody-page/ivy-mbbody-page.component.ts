@@ -18,14 +18,23 @@ export class IvyMbBodyPageComponent implements OnInit {
   parentTaskPanelData: any = [];
   buttonDisable: boolean = true
   userName:any;
+  locationId:any;
+  clientId:any;
+  contractId:any;
   errorMessage: any
+  unitInfo:any;
+  unitIdentificationType:any;
+  totalExpertDebugList:any;
   ngOnInit(): void {
-    this.route.queryParams
-      .subscribe(params => {
-        this.userName=params["userName"];
-      }
-    );
-   }
+    this.route.queryParams.subscribe(params => {
+        this.userName = params["userName"];
+        this.locationId = params["loc"];
+        this.clientId = params["cln"];
+        this.contractId = params["con"];
+      });
+
+     
+  }
 
 
   MbDataForm = new FormGroup({
@@ -48,16 +57,16 @@ export class IvyMbBodyPageComponent implements OnInit {
       sourceType: "DEFECTGROUP",
       firstSource: this.MbDataForm.value['defectDropdown'],
       secondSource: "",
-      itemId: "302607351",
+      itemId: this.unitInfo.ITEM_ID,
       username: this.userName,
-      clientId: "17302",
-      contractId: "10375",
-      locationId: "1444",
-      clientName: "DELL",
-      locName: "Bydgoszcz",
-      contract: "CAR",
-      opt: "DCAR",
-      workCenter: "DELL_CAR_DEBUG"
+      clientId: this.clientId,
+      contractId:  this.contractId,
+      locationId: this.locationId,
+      clientName: this.unitInfo.CLIENTNAME,
+      locName: this.unitInfo.GEONAME,
+      contract: this.unitInfo.CONTRACTNAME,
+      opt: this.unitInfo.ROUTE,
+      workCenter:  this.unitInfo.WORKCENTER
     }
     this.isExpertTaskPanelDisplay = false;
     this.parentTaskPanelData = [];
@@ -93,16 +102,17 @@ export class IvyMbBodyPageComponent implements OnInit {
       sourceType: "DEFECTGROUP",
       firstSource: answerObj.answerNewDebugFlow,
       secondSource: "",
-      itemId: "302607351",
+      itemId: this.unitInfo.ITEM_ID,
       username: this.userName,
-      clientId: "17302",
-      contractId: "10375",
-      locationId: "1444",
-      clientName: "DELL",
-      locName: "Bydgoszcz",
-      contract: "CAR",
-      opt: "DCAR",
-      workCenter: "DELL_CAR_DEBUG"
+      clientId: this.clientId,
+      contractId:  this.contractId,
+      locationId: this.locationId,
+      clientName: this.unitInfo.CLIENTNAME,
+      locName: this.unitInfo.GEONAME,
+      contract: this.unitInfo.CONTRACTNAME,
+      opt: this.unitInfo.ROUTE,
+      workCenter:  this.unitInfo.WORKCENTER
+      
     }
     this.http.post(environment.api_url + "custominstructions/getPRV2Json", body).subscribe({
       next: (v) => {
@@ -118,6 +128,45 @@ export class IvyMbBodyPageComponent implements OnInit {
   }
   displayErrorMsg(msg: any) {
     this.errorMessage = msg;
+  }
+
+  onInput(event) {
+    let firstThreeChar = event.target.value.substring(0, 3);
+    let firstFourChar = event.target.value.substring(0, 4);
+    let identifierValue = event.target.value.trim();
+    this.unitIdentificationType = "SerialNumber";
+    let charRegex = /^[A-Za-z]+$/;
+    let numberRegex = /^[0-9]+$/;
+    if (identifierValue.length >= 4) {
+      if (firstThreeChar == "BCN") {
+        this.unitIdentificationType = "BCN";
+      } else if (identifierValue.length == 7 && numberRegex.test(identifierValue) && charRegex.test(identifierValue)) {
+        this.unitIdentificationType = "SerialNumber";
+      } else if (identifierValue.length == 11 && numberRegex.test(identifierValue)) {
+        this.unitIdentificationType = "FixedAssetTag";
+      }
+
+      if (this.unitIdentificationType) {
+        this.http.get(environment.api_url + "unitinfo/getUnitInfo?unitIdentificationValue=" + identifierValue + "&identificatorType=" + this.unitIdentificationType + "&locationId=" + this.locationId + "&clientId=" + this.clientId + "&contractId=" + this.contractId).subscribe({
+          next: (v) => {
+            this.unitInfo = v["data"]
+            this.unitInfo["UserName"]=this.userName
+            this.http.get(environment.api_url + "metadataprocessor/getJsonReponse?itemId="+identifierValue).subscribe({
+              next: (v) => {
+                this.totalExpertDebugList = v["data"]
+                
+              },
+              error: (e) => {
+                this.errorMessage = e.message
+              }
+            })
+          },
+          error: (e) => {
+            this.errorMessage = e.message
+          }
+        })
+      }
+    }
   }
 
 }

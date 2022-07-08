@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-import {expertJsonObj } from "../contants";
+import { environment } from '../../../src/environments/environment';
+import { expertJsonObj } from "../contants";
 @Component({
 	selector: 'app-ivy-questionnaire-child',
 	templateUrl: './ivy-questionnaire-child.component.html',
@@ -14,14 +15,16 @@ export class IvyQuestionnaireChildComponent implements OnInit {
 	@Input() childPanelContentClass: any;
 	@Input() uuid: any;
 	@Input() actions: any;
-	@Input() index:any;
+	@Input() index: any;
 	@Input() hooks: any;
 	@Input() expanded: any;
 	@Input() parentTaskPanelData: any = {};
+	@Input() totalExpertDebugList: any;
+	@Input() unitInfo: any;
 	@Output() errorMsg = new EventEmitter<string>();
 	@Output() newExpertTaskPanel = new EventEmitter<string>();
 	questionsArray = [];
-	constructor(
+	constructor(private http: HttpClient
 	) { }
 
 	ngOnInit(): void {
@@ -55,9 +58,9 @@ export class IvyQuestionnaireChildComponent implements OnInit {
 				let allActionCodeObjects = []
 				let selectedActionCode = allActionCodeObjects.find(eachItem => eachItem.actonCodesAbbreviation.toLowerCase() == answerObj.answerActions.toLowerCase());
 				if (!!answerObj.answerActions && answerObj.answerActions.toLowerCase() == "newdebugflow") {
-					this.newExpertDebug(answerObj);
+					// this.newExpertDebug(answerObj);
 				} else if (answerObj.answerActions.toLowerCase() == "result code" && partsObj[0].toLowerCase() == "cid") {
-					
+
 					this.questionsArray.map((eachQuestion) => {
 						eachQuestion.disabled = true
 					})
@@ -78,7 +81,7 @@ export class IvyQuestionnaireChildComponent implements OnInit {
 					})
 					this.transactionsOnClickOfAccept(answerObj, partsObj);
 				}
-
+				this.answerObjsSaveApi()
 			}
 		} else {
 			this.questionsArray.splice(index + 1, length - 1);
@@ -243,8 +246,60 @@ export class IvyQuestionnaireChildComponent implements OnInit {
 
 	/// Method for creating NewExpert debug flow
 	async newExpertDebug(answerObj) {
-	this.newExpertTaskPanel.emit(answerObj)
+		this.newExpertTaskPanel.emit(answerObj)
 	}
 
-	
+	answerObjsSaveApi() {
+
+		let finalNodeData = {};
+		let answersList = [];
+		let currentExpertDebugList = {};
+		let totalExpertDebugList = this.totalExpertDebugList || [];
+		if (this.questionsArray) {
+			this.questionsArray.map((data) => {
+				if (data.headerText !== "Accept") {
+					let eachObj = {};
+					eachObj["headerText"] = data.headerText
+					eachObj["nodeText"] = data.nodeText
+					eachObj["nodeID"] = data.nodeID
+					let obj = data.answers.find((x) => x.answerText == data.headerText)
+					eachObj["answerRef"] = obj["answerRef"]
+					answersList.push(eachObj)
+				} else {
+					let obj = data.answers.find((x) => x.answerText == data.headerText)
+					finalNodeData["headerText"] = data.headerText
+					finalNodeData["nodeText"] = data.nodeText
+					finalNodeData["nodeID"] = obj["answerRef"]
+					finalNodeData["answerDefect"] = obj["defectObj"]
+				}
+			})
+			currentExpertDebugList[this.parentTaskPanelData.expertDebugTitle] = {
+				itemId: this.unitInfo.ITEM_BCN,
+				serviceTag: this.unitInfo.ITEM_ID,
+				answersList: answersList,
+				finalNode: finalNodeData
+			}
+			console.log(currentExpertDebugList);
+			totalExpertDebugList.push(currentExpertDebugList);
+
+
+			const body={
+				itemId:  this.unitInfo.ITEM_BCN,
+				userName: this.unitInfo.UserName,
+				pagePayload: totalExpertDebugList,
+			  }
+			this.http.post(environment.api_url + "metadataprocessor/saveJsonResponse", body).subscribe({
+				next: (v) => {
+				
+				},
+				error: (e) => {
+					this.errorMsg.emit(e.message)
+				//   this.errorMessage = e.message
+				}
+			  })
+
+			// this.contextService.addToContext("totalExpertDebugList",totalExpertDebugList)
+		}
+	}
+
 }

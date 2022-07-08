@@ -9,7 +9,7 @@
                 <div class="textfieldContainer searchcriteris-text-full">
                     <label for="defectDropdown"class="subtitle1-align-self greyish-black">BCN Scan </label>
                     <input matInput class="searchcriteris-text-full" formControlName="bcnScanName"
-                        placeholder="Scan" type="text" name="bcnScanName">
+                        placeholder="Scan" type="text" name="bcnScanName" (keyup)="onInput($event)">
                 </div>
                 <div class="container drop-down-select-full-width ">
                     <label for="defectDropdown" class="subtitle1-align-self greyish-black">PlatForm </label>
@@ -39,7 +39,7 @@
     </mat-card-content>
     <div *ngFor="let eachTaskPanel of parentTaskPanelData ; let i = index;">
         <div *ngIf="isExpertTaskPanelDisplay" >
-            <app-ivy-questionnaire-child (newExpertTaskPanel)="addexpertPanel($event)" [index]="i"(errorMsg)="displayErrorMsg($event)" (clearTaskPanel)="clarTaskpanelData($event)"  [parentTaskPanelData]="eachTaskPanel"></app-ivy-questionnaire-child>
+            <app-ivy-questionnaire-child (newExpertTaskPanel)="addexpertPanel($event)" [index]="i"(errorMsg)="displayErrorMsg($event)" (clearTaskPanel)="clarTaskpanelData($event)"  [parentTaskPanelData]="eachTaskPanel" [unitInfo]="unitInfo" [totalExpertDebugList]="totalExpertDebugList"></app-ivy-questionnaire-child>
     </div>
     
 </div>
