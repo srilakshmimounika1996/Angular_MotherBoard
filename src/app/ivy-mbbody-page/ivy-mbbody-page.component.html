@@ -1,46 +1,49 @@
-
 <p class="error-title">
     <span>{{errorMessage}}</span>
 </p>
 <mat-card class="page-content">
-    <mat-card-content >
-        <form [formGroup]= "MbDataForm">
-  
-                <div class="textfieldContainer searchcriteris-text-full">
-                    <label for="defectDropdown"class="subtitle1-align-self greyish-black">BCN Scan </label>
-                    <input matInput class="searchcriteris-text-full" formControlName="bcnScanName"
-                        placeholder="Scan" type="text" name="bcnScanName" (keyup)="onInput($event)">
+    <mat-card-content>
+        <form [formGroup]="MbDataForm">
+
+            <div class="textfieldContainer searchcriteris-text-full">
+                <label for="defectDropdown" class="subtitle1-align-self greyish-black">BCN Scan </label>
+                <input matInput class="searchcriteris-text-full" formControlName="bcnScanName" placeholder="Scan"
+                    type="text" name="bcnScanName" (keyup)="onInput($event)">
+            </div>
+            <div class="textfieldContainer searchcriteris-text-full ">
+                <label for="defectDropdown" class="subtitle1-align-self greyish-black">PlatForm </label>
+                <select placeholder='Select' class="body" required="true" class="dropdown-container  body2"
+                    (change)="changeDropdown($event)" formControlName="platformDropdown">
+                    <option selected value="null">-Select-</option>
+                    <option *ngFor="let option of Platform" [value]="option">{{option}}
+                    </option>
+                </select>
+            </div>
+            <div class="textfieldContainer searchcriteris-text-full">
+                <label for="defectDropdown" class="subtitle1-align-self greyish-black">Defect </label>
+                <select placeholder='Select' class="body" required="true" class="dropdown-container  body2"
+                    (change)="changeDropdown($event)" formControlName="defectDropdown">
+                    <option selected value="null">-Select-</option>
+                    <option *ngFor="let defect of Defect" [value]="defect">{{defect}}
+                    </option>
+                </select>
+                <div class="add-expert-debug">
+                    <button mat-button [disabled]="buttonDisable" color="primary" class="primary-btn"
+                        (click)="onClick()">
+                        Add Expert Debug
+                    </button>
                 </div>
-                <div class="container drop-down-select-full-width ">
-                    <label for="defectDropdown" class="subtitle1-align-self greyish-black">PlatForm </label>
-                    <select placeholder='Select' class="body" required="true" class="dropdown-container  body2" (change)="changeDropdown($event)"
-                        formControlName="platformDropdown">
-                        <option selected value="null">-Select-</option>
-                        <option  *ngFor="let option of Platform" [value]="option">{{option}}
-                        </option>
-                    </select>
-                </div>
-                <div class="container drop-down-select-full-width ">
-                    <label for="defectDropdown" class="subtitle1-align-self greyish-black">Defect </label>
-                    <select placeholder='Select' class="body" required="true" class="dropdown-container  body2"  (change)="changeDropdown($event)"
-                        formControlName="defectDropdown">
-                        <option selected value="null">-Select-</option>
-                        <option *ngFor="let defect of Defect" [value]="defect">{{defect}}
-                        </option>
-                    </select>
-                    <div class="add-expert-debug">
-                        <button mat-button [disabled]="buttonDisable" color="primary" class="primary-btn"  (click)="onClick()">
-                            Add Expert Debug
-                        </button>
-                    </div>
-                    
-                </div>
+
+            </div>
         </form>
     </mat-card-content>
     <div *ngFor="let eachTaskPanel of parentTaskPanelData ; let i = index;">
-        <div *ngIf="isExpertTaskPanelDisplay" >
-            <app-ivy-questionnaire-child (newExpertTaskPanel)="addexpertPanel($event)" [index]="i"(errorMsg)="displayErrorMsg($event)" (clearTaskPanel)="clarTaskpanelData($event)"  [parentTaskPanelData]="eachTaskPanel" [unitInfo]="unitInfo" [totalExpertDebugList]="totalExpertDebugList"></app-ivy-questionnaire-child>
+        <div *ngIf="isExpertTaskPanelDisplay">
+            <app-ivy-questionnaire-child (newExpertTaskPanel)="addexpertPanel($event)" [index]="i"
+                (errorMsg)="displayErrorMsg($event)" (clearTaskPanel)="clarTaskpanelData($event)"
+                [parentTaskPanelData]="eachTaskPanel" [unitInfo]="unitInfo"
+                [totalExpertDebugList]="totalExpertDebugList"></app-ivy-questionnaire-child>
+        </div>
+
     </div>
-    
-</div>
 </mat-card>

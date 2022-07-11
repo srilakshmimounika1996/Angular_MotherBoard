@@ -7,7 +7,7 @@ import { Component, EventEmitter, INJECTOR, Input, OnInit, Output } from '@angul
   styleUrls: ['./ivy-questionnaire-parent.component.scss']
 })
 export class IvyQuestionnaireParentComponent implements OnInit {
- 
+
   @Input() parentPanelClass: any;
   @Input() parentPanelHeaderClass: any;
   @Input() childPanelClass: any;
@@ -16,20 +16,20 @@ export class IvyQuestionnaireParentComponent implements OnInit {
   @Input() uuid: any;
   @Input() actions: any;
   @Input() hooks: any;
-  @Input() index:any;
+  @Input() index: any;
   @Input() expanded: any;
   @Input() parentTaskPanelData: any;
   @Output() clearTaskPanel = new EventEmitter<string>()
-  constructor(){ }
+  constructor() { }
 
   ngOnInit(): void {
     console.log(this.parentTaskPanelData);
   }
   onDeleteClick() {
-    console.log(this.index,"index");
-    
-    this.parentTaskPanelData={}
-   this.clearTaskPanel.emit(this.index)
+    console.log(this.index, "index");
+
+    this.parentTaskPanelData = {}
+    this.clearTaskPanel.emit(this.index)
   }
 
 }

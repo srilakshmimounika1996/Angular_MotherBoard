@@ -1,19 +1,19 @@
 .task-panel-header-color-light-grey {
-    background: rgb(243, 245, 246) !important;
-  }
+  background: rgb(243, 245, 246) !important;
+}
 
-  .ivy-questionaire-child-panel-class{
-    overflow: visible;
-  
-    .mat-expansion-panel-body {
-      background: transparent;
-    }
-  }
+.ivy-questionaire-child-panel-class {
+  overflow: visible;
 
-  .ivy-questionaire-child-content-class{
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    justify-content: space-between;
-    padding: 10px 5px;
+  .mat-expansion-panel-body {
+    background: transparent;
   }
+}
+
+.ivy-questionaire-child-content-class {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  justify-content: space-between;
+  padding: 10px 5px;
+}

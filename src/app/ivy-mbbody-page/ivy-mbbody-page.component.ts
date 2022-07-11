@@ -4,6 +4,7 @@ import { platform, defect } from '../contants';
 import { environment } from '../../../src/environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-ivy-mbbody-page',
   templateUrl: './ivy-mbbody-page.component.html',
@@ -11,35 +12,33 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class IvyMbBodyPageComponent implements OnInit {
 
-  constructor(private http: HttpClient,private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private spinnerService: NgxSpinnerService) { }
   Platform = platform;
   Defect = defect;
   isExpertTaskPanelDisplay: boolean = false;
   parentTaskPanelData: any = [];
   buttonDisable: boolean = true
-  userName:any;
-  locationId:any;
-  clientId:any;
-  contractId:any;
+  userName: any;
+  locationId: any;
+  clientId: any;
+  contractId: any;
   errorMessage: any
-  unitInfo:any;
-  unitIdentificationType:any;
-  totalExpertDebugList:any;
+  unitInfo: any;
+  unitIdentificationType: any;
+  totalExpertDebugList: any;
   @Output() unitData = new EventEmitter<object>();
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-        this.userName = params["userName"];
-        this.locationId = params["loc"];
-        this.clientId = params["cln"];
-        this.contractId = params["con"];
-      });
-
-     
+      this.userName = params["userName"];
+      this.locationId = params["loc"];
+      this.clientId = params["cln"];
+      this.contractId = params["con"];
+    });
   }
 
 
   MbDataForm = new FormGroup({
-    bcnScanName: new FormControl(""),
+    bcnScanName: new FormControl("", Validators.required),
     platformDropdown: new FormControl("", Validators.required),
     defectDropdown: new FormControl("", Validators.required)
   })
@@ -57,24 +56,31 @@ export class IvyMbBodyPageComponent implements OnInit {
       customInstructionType: "EXPERTSYSTEM",
       sourceType: "DEFECTGROUP",
       firstSource: this.MbDataForm.value['defectDropdown'],
-      secondSource: "",
-      itemId: this.unitInfo.ITEM_ID,
+      secondSource: "Bydgoszcz|DELL|MB|MB|DELL_MB",
+      itemId:"302607351",
       username: this.userName,
-      clientId: this.clientId,
-      contractId:  this.contractId,
-      locationId: this.locationId,
-      clientName: this.unitInfo.CLIENTNAME,
-      locName: this.unitInfo.GEONAME,
-      contract: this.unitInfo.CONTRACTNAME,
-      opt: this.unitInfo.ROUTE,
-      workCenter:  this.unitInfo.WORKCENTER
+      clientId:"17302",
+      contractId: "10375",
+      locationId: "1444",
+      clientName:"DELL",
+      locName: "Bydgoszcz",
+      contract: "MB",
+      opt: "MB",
+      workCenter: "DELL_MB"
     }
     this.isExpertTaskPanelDisplay = false;
     this.parentTaskPanelData = [];
+    this.spinnerService.show();
     this.http.post(environment.api_url + "custominstructions/getPRV2Json", body).subscribe({
-      next: (v) => {
-        this.parentTaskPanelData.push(v["data"]?.data[0]?.expertDebug);
-        this.isExpertTaskPanelDisplay = true;
+      next: (v: any) => {
+        if (v["status"]) {
+          this.spinnerService.hide();
+          this.parentTaskPanelData.push(v["data"]?.data[0]?.expertDebug);
+          this.isExpertTaskPanelDisplay = true;
+        } else {
+          this.spinnerService.hide();
+          this.errorMessage = v.message
+        }
       },
       error: (e) => {
         this.errorMessage = e.message
@@ -83,43 +89,43 @@ export class IvyMbBodyPageComponent implements OnInit {
   }
 
   clarTaskpanelData(parentData: any) {
-    this.isExpertTaskPanelDisplay = false
-    // this.parentTaskPanelData = parentData;
-    this.parentTaskPanelData  && this.parentTaskPanelData .map((x,index) => {
-      // if (x.defectCode === defectCode) {
-          // x.childList && x.childList.map((child, index) => {
-              if (index === parentData) {
-                  this.parentTaskPanelData.splice(index, 1);
-              }
-          // })
-      // }
-  })
-  console.log(this.parentTaskPanelData);
-  
+    this.isExpertTaskPanelDisplay = false;
+    this.parentTaskPanelData && this.parentTaskPanelData.map((x, index) => {
+      if (index === parentData) {
+        this.parentTaskPanelData.splice(index, 1);
+      }
+    });
   }
+
   addexpertPanel(answerObj) {
     const body = {
       customInstructionType: "EXPERTSYSTEM",
       sourceType: "DEFECTGROUP",
-      firstSource: answerObj.answerNewDebugFlow,
-      secondSource: "",
-      itemId: this.unitInfo.ITEM_ID,
+      firstSource: this.MbDataForm.value['defectDropdown'],
+      secondSource: "Bydgoszcz|DELL|MB|MB|DELL_MB",
+      itemId:"302607351",
       username: this.userName,
-      clientId: this.clientId,
-      contractId:  this.contractId,
-      locationId: this.locationId,
-      clientName: this.unitInfo.CLIENTNAME,
-      locName: this.unitInfo.GEONAME,
-      contract: this.unitInfo.CONTRACTNAME,
-      opt: this.unitInfo.ROUTE,
-      workCenter:  this.unitInfo.WORKCENTER
-      
-    }
-    this.http.post(environment.api_url + "custominstructions/getPRV2Json", body).subscribe({
-      next: (v) => {
-        this.parentTaskPanelData.push(v["data"]?.data[0]?.expertDebug);
+      clientId:"17302",
+      contractId: "10375",
+      locationId: "1444",
+      clientName:"DELL",
+      locName: "Bydgoszcz",
+      contract: "MB",
+      opt: "MB",
+      workCenter: "DELL_MB"
 
-        this.isExpertTaskPanelDisplay = true;
+    }
+    this.spinnerService.show();
+    this.http.post(environment.api_url + "custominstructions/getPRV2Json", body).subscribe({
+      next: (v: any) => {
+        if (v["status"]) {
+          this.parentTaskPanelData.push(v["data"]?.data[0]?.expertDebug);
+          this.spinnerService.hide();
+          this.isExpertTaskPanelDisplay = true;
+        } else {
+          this.spinnerService.hide();
+          this.errorMessage = v.message
+        }
       },
       error: (e) => {
         this.errorMessage = e.message
@@ -148,22 +154,34 @@ export class IvyMbBodyPageComponent implements OnInit {
       }
 
       if (this.unitIdentificationType) {
+        this.spinnerService.show();
         this.http.get(environment.api_url + "unitinfo/getUnitInfo?unitIdentificationValue=" + identifierValue + "&identificatorType=" + this.unitIdentificationType + "&locationId=" + this.locationId + "&clientId=" + this.clientId + "&contractId=" + this.contractId).subscribe({
-          next: (v) => {
-            this.unitInfo = v["data"];
-            this.unitData.emit(this.unitInfo);
-            this.unitInfo["UserName"]=this.userName
-            this.http.get(environment.api_url + "metadataprocessor/getJsonReponse?itemId="+identifierValue).subscribe({
-              next: (v) => {
-                this.totalExpertDebugList = v["data"]
-                
-              },
-              error: (e) => {
-                this.errorMessage = e.message
-              }
-            })
+          next: (v: any) => {
+            if (v["status"]) {
+              this.unitInfo = v["data"];
+              this.unitData.emit(this.unitInfo);
+              this.unitInfo["UserName"] = this.userName
+              this.http.get(environment.api_url + "metadataprocessor/getJsonReponse?itemId=" + identifierValue).subscribe({
+                next: (v: any) => {
+                  if (v["status"]) {
+                    this.totalExpertDebugList = v["data"]
+                    this.spinnerService.hide();
+                  } else {
+                    this.spinnerService.hide();
+                  }
+                },
+                error: (e) => {
+                  this.spinnerService.hide();
+                  this.errorMessage = e.message
+                }
+              })
+            } else {
+              this.spinnerService.hide();
+              this.errorMessage = v.message
+            }
           },
           error: (e) => {
+            this.spinnerService.hide();
             this.errorMessage = e.message
           }
         })

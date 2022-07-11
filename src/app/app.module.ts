@@ -14,10 +14,11 @@ import { IvyQuestionnaireParentComponent } from './ivy-questionnaire-parent/ivy-
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,10 +29,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
     MatSidenavModule,
-    BrowserAnimationsModule,
     MatSelectModule,
     MatCardModule,
     MatExpansionModule,
@@ -48,7 +49,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common
     MatSelectModule,
     MatCardModule,
     MatExpansionModule,
-    MatSidenavModule
+    MatSidenavModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,44 +1,45 @@
 .subprocess-containerClass {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.leftside_header {
+  color: white;
+
+  .sidenav-header {
+    padding: 20px 10px 10px 12px;
+    margin: 0px;
+    background: #3f4450;
   }
-  .leftside_header {
-    color: white;
-  
-    .sidenav-header {
-      padding: 20px 10px 10px 12px;
-      margin: 0px;
-      background: #3f4450;
-    }
-  
-    .sidenav-due {
-      padding: 0px 2px 5px 12px;
-      background: #3f4450;
-    }
-  
-    .sidenav-title {
-      padding: 8px 2px 5px 12px;
-      color: #eeeff0;
-      margin: 0;
-    }
-  
-    .sidenav-text {
-      padding: 10px 2px 0px 12px;
-      color: #d8d9dc;
-      cursor: pointer;
-    }
-  
-    .dashbord-img {
-      width: 32%;
-      display: block;
-      margin: 10px auto;
-    }
+
+  .sidenav-due {
+    padding: 0px 2px 5px 12px;
+    background: #3f4450;
   }
-  
-  .heading1 {
-    font-size: 18px;
-    font-family: bold;
+
+  .sidenav-title {
+    padding: 8px 2px 5px 12px;
+    color: #eeeff0;
+    margin: 0;
   }
+
+  .sidenav-text {
+    padding: 10px 2px 0px 12px;
+    color: #d8d9dc;
+    cursor: pointer;
+  }
+
+  .dashbord-img {
+    width: 32%;
+    display: block;
+    margin: 10px auto;
+  }
+}
+
+.heading1 {
+  font-size: 18px;
+  font-family: bold;
+}

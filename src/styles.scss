@@ -46,6 +46,7 @@ body {
     border-bottom: 1px solid #a09d9d;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
+
     .mat-button-toggle-label-content {
       line-height: 35px !important;
       font-size: 15px;
@@ -62,7 +63,7 @@ body {
 .mat-button-toggle:nth-child(2) {
   white-space: nowrap;
   position: relative;
- 
+
   .mat-button-toggle-button {
     border: 1px solid #a09d9d;
     border-right: 1px solid #a09d9d;
@@ -71,6 +72,7 @@ body {
     border-left: 1px solid #a09d9d;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+
     .mat-button-toggle-label-content {
       line-height: 35px !important;
       font-size: 15px;
@@ -101,12 +103,14 @@ body {
     z-index: 1;
   }
 }
+
 .mat-icon {
   color: #acadb1;
   height: 20px !important;
   width: 20px !important;
   margin-top: -10px;
 }
+
 .yellow-border-left::before {
   background-color: rgb(255, 206, 75, 1);
 }
@@ -121,10 +125,18 @@ body {
   flex-grow: 1;
   margin-right: 16px;
 }
+
 .mat-raised-button[disabled][disabled] {
-background-color: #a09d9d;
-cursor: pointer;
+  background-color: #a09d9d;
+  cursor: pointer;
 }
+
+// .mat-raised-button[disabled][disabled] {
+// background-color: #a09d9d !important;
+// cursor: pointer;
+// }
+
+
 .mat-drawer-content {
   position: relative;
   z-index: 1;
@@ -132,6 +144,7 @@ cursor: pointer;
   height: 100%;
   overflow: auto;
 }
+
 .mat-expansion-panel .mat-expansion-panel-header>.mat-content {
   height: 100%;
   align-items: center;
@@ -143,6 +156,7 @@ cursor: pointer;
   flex-direction: row;
   overflow: hidden;
 }
+
 .page-content {
   background: #e2e7ed;
   // height: 81%;
@@ -150,10 +164,13 @@ cursor: pointer;
   padding: 10px 20px;
   position: relative;
   width: 100%;
+
   .mat-card-content {
     padding-right: 35px;
   }
-  .mat-card>:first-child, .mat-card-content>:first-child{
+
+  .mat-card>:first-child,
+  .mat-card-content>:first-child {
     border-radius: 4px;
   }
 }
@@ -171,10 +188,11 @@ cursor: pointer;
 .ivy-questionaire-parent-panel-class {
   overflow: visible;
   padding-right: 35px;
- 
+
   .mat-expansion-panel-body {
     background: white;
   }
+
   .mat-expansion-panel-content {
     border-top: 0.5px groove rgba(227, 230, 233, 0.15);
     // padding-top: 5px;
@@ -218,6 +236,7 @@ cursor: pointer;
     background: transparent;
     padding: 0 !important;
   }
+
   .mat-expansion-panel-content {
     border-top: 0.5px groove rgba(227, 230, 233, 0.15);
     // padding-top: 5px;

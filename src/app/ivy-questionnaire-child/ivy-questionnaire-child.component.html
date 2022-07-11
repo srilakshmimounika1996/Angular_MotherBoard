@@ -1,7 +1,7 @@
-<app-ivy-questionnaire-parent [index]="index" parentPanelClass="ivy-questionaire-child-panel-class bold-font" [expanded]="expanded"
-    [parentTaskPanelData]="parentTaskPanelData" parentPanelHeaderClass="bold-font">
+<app-ivy-questionnaire-parent [index]="index" parentPanelClass="ivy-questionaire-child-panel-class bold-font"
+    [expanded]="expanded" [parentTaskPanelData]="parentTaskPanelData" parentPanelHeaderClass="bold-font">
     <div class="child-component">
-        <mat-accordion  *ngFor="let currentQuestion of questionsArray; let i = index;" style="margin: 10px;">
+        <mat-accordion *ngFor="let currentQuestion of questionsArray; let i = index;" style="margin: 10px;">
             <mat-expansion-panel #modelChild [expanded]="currentQuestion.expanded"
                 class="yellow-border-left ivy-questionaire-child-panel-class" hideToggle>
                 <mat-expansion-panel-header class="task-panel-header-color-light-grey bold-font">
@@ -30,7 +30,7 @@
             </mat-expansion-panel>
         </mat-accordion>
         <mat-action-row style="padding: 10px;">
-            <button mat-button  class="reset-button" (click)="onClickOfReset()">Reset</button>
+            <button mat-button class="reset-button" (click)="onClickOfReset()">Reset</button>
         </mat-action-row>
     </div>
 </app-ivy-questionnaire-parent>

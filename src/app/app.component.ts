@@ -8,27 +8,24 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppComponent {
   title = 'motherboard_page';
-  bcnValue:any;
+  bcnValue: any;
+  typeSelected: string;
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
-  ) {  
-    const listofSVGIcons = ['delete','question'];
-  listofSVGIcons.forEach((svgIcon) => {
-    this.iconRegistry.addSvgIcon(
-      svgIcon,
-      this.sanitizer.bypassSecurityTrustResourceUrl(`assets/${svgIcon}.svg`));
-  })}
+  ) {
+    this.typeSelected = 'ball-spin-clockwise';
+    const listofSVGIcons = ['delete', 'question'];
+    listofSVGIcons.forEach((svgIcon) => {
+      this.iconRegistry.addSvgIcon(
+        svgIcon,
+        this.sanitizer.bypassSecurityTrustResourceUrl(`assets/${svgIcon}.svg`));
+    })
+  }
   ngOnInit(): void {
-    // const listofSVGIcons = ['delete','predictive'];
-    // listofSVGIcons.forEach((svgIcon) => {
-    //   this.iconRegistry.addSvgIcon(
-    //     svgIcon,
-    //     this.sanitizer.bypassSecurityTrustResourceUrl(`assets/${svgIcon}.svg`));
-    // });
-  
-}
-unitData(obj){
-this.bcnValue=obj.ITEM_BCN
-}
+
+  }
+  unitData(obj) {
+    this.bcnValue = obj.ITEM_BCN
+  }
 }

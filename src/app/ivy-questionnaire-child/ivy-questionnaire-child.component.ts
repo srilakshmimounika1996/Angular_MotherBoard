@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { environment } from '../../../src/environments/environment';
 import { expertJsonObj } from "../contants";
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
 	selector: 'app-ivy-questionnaire-child',
 	templateUrl: './ivy-questionnaire-child.component.html',
@@ -24,7 +25,7 @@ export class IvyQuestionnaireChildComponent implements OnInit {
 	@Output() errorMsg = new EventEmitter<string>();
 	@Output() newExpertTaskPanel = new EventEmitter<string>();
 	questionsArray = [];
-	constructor(private http: HttpClient
+	constructor(private http: HttpClient, private spinnerService: NgxSpinnerService
 	) { }
 
 	ngOnInit(): void {
@@ -84,6 +85,7 @@ export class IvyQuestionnaireChildComponent implements OnInit {
 				this.answerObjsSaveApi()
 			}
 		} else {
+			this.errorMsg.emit("")
 			this.questionsArray.splice(index + 1, length - 1);
 		}
 
@@ -283,20 +285,26 @@ export class IvyQuestionnaireChildComponent implements OnInit {
 			totalExpertDebugList.push(currentExpertDebugList);
 
 
-			const body={
-				itemId:  this.unitInfo.ITEM_BCN,
+			const body = {
+				itemId: this.unitInfo.ITEM_BCN,
 				userName: this.unitInfo.UserName,
 				pagePayload: totalExpertDebugList,
-			  }
+			}
+			this.spinnerService.show();
 			this.http.post(environment.api_url + "metadataprocessor/saveJsonResponse", body).subscribe({
-				next: (v) => {
-				
+				next: (v: any) => {
+					if (v["status"]) {
+						this.spinnerService.hide();
+					} else {
+						this.spinnerService.hide();
+						this.errorMsg.emit(v.message)
+					}
 				},
 				error: (e) => {
 					this.errorMsg.emit(e.message)
-				//   this.errorMessage = e.message
+					//   this.errorMessage = e.message
 				}
-			  })
+			})
 
 			// this.contextService.addToContext("totalExpertDebugList",totalExpertDebugList)
 		}
