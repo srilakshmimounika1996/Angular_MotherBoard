@@ -73,7 +73,7 @@ export class IvyMbBodyPageComponent implements OnInit {
     this.spinnerService.show();
     this.http.post(environment.api_url + "custominstructions/getPRV2Json", body).subscribe({
       next: (v: any) => {
-        if (v["status"]) {
+        if (v["status"] && v["data"] !=null && v["data"]!==[]) {
           this.spinnerService.hide();
           this.parentTaskPanelData.push(v["data"]?.data[0]?.expertDebug);
           this.isExpertTaskPanelDisplay = true;
@@ -118,7 +118,7 @@ export class IvyMbBodyPageComponent implements OnInit {
     this.spinnerService.show();
     this.http.post(environment.api_url + "custominstructions/getPRV2Json", body).subscribe({
       next: (v: any) => {
-        if (v["status"]) {
+        if (v["status"] && v["data"] !=null && v["data"]!=[]) {
           this.parentTaskPanelData.push(v["data"]?.data[0]?.expertDebug);
           this.spinnerService.hide();
           this.isExpertTaskPanelDisplay = true;
