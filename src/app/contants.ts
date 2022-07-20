@@ -900,4 +900,5 @@ export const expertJsonObj=[{
 }]
 
 export const platform = ["Loki N3 WHL", "Loki N3 WHL", "Loki N3 WHL", "Loki N3 WHL"];
-export const defect = ["No Power", "No Boot", "No Charging"];
+export const defect = ["BULLSEYE AMD_ALL_NO POWER", "BULLSEYE AMD_ALL_NO CHARGING", "BOLT L_ALL_USB","BOLT L_ALL_USB Type C- HDMI Fail"];
+

@@ -79,6 +79,25 @@ body {
     }
   }
 }
+.mat-button-toggle:nth-child(3) {
+  white-space: nowrap;
+  position: relative;
+
+  .mat-button-toggle-button {
+    border: 1px solid #a09d9d;
+    border-right: 1px solid #a09d9d;
+    border-top: 1px solid #a09d9d;
+    border-bottom: 1px solid #a09d9d;
+    border-left: 1px solid #a09d9d;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+    .mat-button-toggle-label-content {
+      line-height: 35px !important;
+      font-size: 15px;
+    }
+  }
+}
 
 .reset-button {
   border: 1px solid #2979ff;
