@@ -1,4 +1,4 @@
-export const expertJsonObj=[{
+export const expertJsonObj = [{
     "expertDebug": {
         "expertDebugTitle": "No Power",
         "expertDebugID": "EDID0001",
@@ -14,14 +14,15 @@ export const expertJsonObj=[{
                         "answerText": "Yes",
                         "answerRef": "ID_NO_POWER_01_01",
                         "answerActions": "newDebugflow",
-                        "answerNewdebugflow":"Audio Failure",
+                        "answerNewdebugflow": "Audio Failure",
                         "finalNode": true,
                         "answerDefect": [
                             {
                                 "code": "Liquid",
                                 "answerParts": [
                                     {
-                                        "part": " Result CID"
+                                        "part": " Result CID",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -74,7 +75,8 @@ export const expertJsonObj=[{
                                 "code": "AC Adaptor Issue",
                                 "answerParts": [
                                     {
-                                        "part": "AC ADAPTER"
+                                        "part": "AC ADAPTER",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -90,7 +92,8 @@ export const expertJsonObj=[{
                                 "code": "AC ADAPTER ADDED",
                                 "answerParts": [
                                     {
-                                        "part": "AC ADAPTER"
+                                        "part": "AC ADAPTER",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -136,7 +139,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "CABLE"
+                                        "part": "CABLE",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -189,7 +193,8 @@ export const expertJsonObj=[{
                                 "code": "DC In cable",
                                 "answerParts": [
                                     {
-                                        "part": "CABLE DC IN"
+                                        "part": "CABLE DC IN",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -220,7 +225,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "MB"
+                                        "part": "MB",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -251,7 +257,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "BATTERY"
+                                        "part": "BATTERY",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -304,7 +311,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "MB"
+                                        "part": "MB",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -335,7 +343,8 @@ export const expertJsonObj=[{
                                 "code": "MEMORY",
                                 "answerParts": [
                                     {
-                                        "part": "RAM"
+                                        "part": "RAM",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -351,7 +360,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": " Result CID"
+                                        "part": " Result CID",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -375,7 +385,8 @@ export const expertJsonObj=[{
                                 "code": "WiFi card Issue",
                                 "answerParts": [
                                     {
-                                        "part": "WLAN"
+                                        "part": "WLAN",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -428,7 +439,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "WWAN"
+                                        "part": "WWAN",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -444,7 +456,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": " Result CID"
+                                        "part": " Result CID",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -490,7 +503,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "HDD/SSD"
+                                        "part": "HDD/SSD",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -506,7 +520,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": " Result CID"
+                                        "part": " Result CID",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -530,7 +545,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "EXTENSION BOARD"
+                                        "part": "EXTENSION BOARD",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -590,7 +606,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "CABLE"
+                                        "part": "CABLE",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -621,7 +638,8 @@ export const expertJsonObj=[{
                                 "code": "LCD HUD issue",
                                 "answerParts": [
                                     {
-                                        "part": "LCD"
+                                        "part": "LCD",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -652,7 +670,8 @@ export const expertJsonObj=[{
                                 "code": "LCD",
                                 "answerParts": [
                                     {
-                                        "part": "LCD"
+                                        "part": "LCD",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -676,7 +695,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "CABLE LCD"
+                                        "part": "CABLE LCD",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -692,7 +712,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "WEBCAM"
+                                        "part": "WEBCAM",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -723,7 +744,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "EXTENSION BOARD"
+                                        "part": "EXTENSION BOARD",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -754,7 +776,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "KEYBOARD"
+                                        "part": "KEYBOARD",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -785,7 +808,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "HEATSINK"
+                                        "part": "HEATSINK",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -816,7 +840,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "FAN"
+                                        "part": "FAN",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -847,7 +872,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "SPEAKERS"
+                                        "part": "SPEAKERS",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -871,7 +897,8 @@ export const expertJsonObj=[{
                                 "code": "No power Other problem",
                                 "answerParts": [
                                     {
-                                        "part": "MB"
+                                        "part": "MB",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -887,7 +914,8 @@ export const expertJsonObj=[{
                                 "code": "Palmrest",
                                 "answerParts": [
                                     {
-                                        "part": "COVER PALMREST"
+                                        "part": "COVER PALMREST",
+                                        "location": "hiii"
                                     }
                                 ]
                             }
@@ -900,5 +928,6 @@ export const expertJsonObj=[{
 }]
 
 export const platform = ["Loki N3 WHL", "Loki N3 WHL", "Loki N3 WHL", "Loki N3 WHL"];
-export const defect = ["BULLSEYE AMD_ALL_NO POWER", "BULLSEYE AMD_ALL_NO CHARGING", "BOLT L_ALL_USB","BOLT L_ALL_USB Type C- HDMI Fail"];
+export const defect = ["BULLSEYE AMD_ALL_NO POWER", "BULLSEYE AMD_ALL_NO CHARGING", "BOLT L_ALL_USB", "BOLT L_ALL_USB Type C- HDMI Fail"];
 
+export const mb_platforms = [{ "platform": "BERLINETTA", "defect": ["NO CHARGING"] }, { "platform": "BOLT L", "defect": ["HDMI", "NO CHARGING", "NO POST", "NO POWER", "USB Type C- HDMI Fail", "USB"] }, { "platform": "BULLSEYE AMD", "defect": ["NO CHARGING", "NO POWER"] }, { "platform": "BULLSEYE TGL", "defect": ["ANO CHARGING", "AUTO POWER ON", "CAMERA", "Can't Power ON and OFF", "NO CHARGING", "THERMISTOR FAIL"] }, { "platform": "CYBORG L", "defect": ["No Post", "No Power"] }, { "platform": "FIREFLY17", "defect": ["SPEAKER"] }, { "platform": "FOREST CREEK 11 CHROME", "defect": ["NO POWER"] }, { "platform": "KEYSTONE WINDOWS 11 MLK", "defect": ["USB"] }, { "platform": "LOKI L", "defect": ["CAMERA", "LAN", "NO CHARGING", "NO POST", "NO POWER"] }, { "platform": "LOKI N3 MLK ICL", "defect": ["CAMERA", "NO CHARGING", "NO POST", "NO POWER"] }, { "platform": "MOCKINGBIRD L", "defect": ["NO CHARGING", "NO POST", "NO POWER", "PERFORMANCE iSSUE", "SHUTSDOWN"] }, { "platform": "MOCKINGBIRD N5 V5 TGL", "defect": ["NO CHARGING", "NO POST", "NO POWER", "PERFORMANCE iSSUE"] }, { "platform": "NORTHBAY WHL", "defect": ["NO POWER"] }, { "platform": "SERENITY 17", "defect": ["NO POWER"] }, { "platform": "STEAMBOAT", "defect": ["Cant Power On", "No Charging", "No Post", "No Power", "SSD Not Detect", "Thunderbolt"] }, { "platform": "TAOS- All", "defect": ["Shutsdown"] }]

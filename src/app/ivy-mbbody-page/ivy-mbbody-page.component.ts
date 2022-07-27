@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { platform, defect } from '../contants';
+import { platform, defect ,mb_platforms} from '../contants';
 import { environment } from '../../../src/environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -13,8 +13,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class IvyMbBodyPageComponent implements OnInit {
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private spinnerService: NgxSpinnerService) { }
-  Platform = platform;
-  Defect = defect;
+  Platform = mb_platforms;
+  Defect :any;
   isExpertTaskPanelDisplay: boolean = false;
   parentTaskPanelData: any = [];
   buttonDisable: boolean = true
@@ -50,12 +50,20 @@ export class IvyMbBodyPageComponent implements OnInit {
       this.buttonDisable = false
     }
   }
-
+  platformChangeDropdown(event) {
+    this.isExpertTaskPanelDisplay = false;
+    this.parentTaskPanelData = [];
+    let defectList = this.Platform.find((x: any) => x.platform == event.target.options[event.target.options.selectedIndex].text);
+    this.Defect = defectList.defect;
+    if (this.MbDataForm.status == "VALID") {
+      this.buttonDisable = false
+    }
+  }
   onClick() {
     const body = {
       customInstructionType: "EXPERTSYSTEM",
       sourceType: "DEFECTGROUP",
-      firstSource: this.MbDataForm.value['defectDropdown'],
+      firstSource: `${this.MbDataForm.value['platformDropdown']}_ALL_${this.MbDataForm.value['defectDropdown']}`,
       secondSource: "Bydgoszcz|DELL|MB|MB|DELL_MB",
       itemId:"302607351",
       username: this.userName,
@@ -101,7 +109,7 @@ export class IvyMbBodyPageComponent implements OnInit {
     const body = {
       customInstructionType: "EXPERTSYSTEM",
       sourceType: "DEFECTGROUP",
-      firstSource: this.MbDataForm.value['defectDropdown'],
+      firstSource: `${this.MbDataForm.value['platformDropdown']}_ALL_${this.MbDataForm.value['defectDropdown']}`,
       secondSource: "Bydgoszcz|DELL|MB|MB|DELL_MB",
       itemId:"302607351",
       username: this.userName,

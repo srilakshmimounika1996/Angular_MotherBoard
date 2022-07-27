@@ -13,9 +13,9 @@
             <div class="textfieldContainer searchcriteris-text-full ">
                 <label for="defectDropdown" class="subtitle1-align-self greyish-black">PlatForm </label>
                 <select placeholder='Select' class="body" required="true" class="dropdown-container  body2"
-                    (change)="changeDropdown($event)" formControlName="platformDropdown">
+                    (change)="platformChangeDropdown($event)" formControlName="platformDropdown">
                     <option selected value="null">-Select-</option>
-                    <option *ngFor="let option of Platform" [value]="option">{{option}}
+                    <option *ngFor="let option of Platform" [value]="option.platform">{{option.platform}}
                     </option>
                 </select>
             </div>

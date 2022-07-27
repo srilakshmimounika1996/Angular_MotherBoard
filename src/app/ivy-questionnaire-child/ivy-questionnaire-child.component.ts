@@ -119,15 +119,21 @@ export class IvyQuestionnaireChildComponent implements OnInit {
 			} else {
 				answerObj.answerDefect.map((x) => {
 					let partsString = "";
+					let locationString="";
 					x.answerParts.map((part, index) => {
+						if(part.location){
+							locationString = locationString + part.location;
+						}
 						if (index === x.answerParts.length - 1) {
-							partsString = partsString + part.part;
+							if(part.part){
+								partsString = partsString + part.part;
+							}
 						} else {
 							partsString = partsString + part.part + ", ";
 						}
 					})
 					nextQuestion = {
-						"nodeText": answerObj.answerRef + " CODE: " + x.code + " " + answerObj.answerActions + ": " + partsString,
+						"nodeText": answerObj.answerRef + " CODE: " + x.code + " " + answerObj.answerActions + ": " + partsString + " " + "LOCATION :" + locationString,
 						"answers": [
 							{
 								"answerText": "Decline",
