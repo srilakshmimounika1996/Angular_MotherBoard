@@ -1,7 +1,7 @@
 .drop-down-select-full-width {
   display: flex;
   align-items: center;
-  font-family: bold;
+  font-weight: bold;
 
   .textfield-container {
     width: 70%;
@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: bold;
+  font-weight: bold;
 
   .textfield-container {
     width: 100%;
@@ -76,7 +76,7 @@
   input {
     width: 28%;
     padding: 10px;
-    font-family: regular;
+    // font-family: regular;
   }
 }
 
@@ -84,7 +84,7 @@
   padding-left: 100px;
 
   button:disabled {
-    color: white;
+    // color: white;
     font-size: 14px;
     font-weight: 400;
     box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 20%), 0px 0px 0px 0px rgb(0 0 0 / 14%), 0px 0px 0px 0px rgb(0 0 0 / 12%);
@@ -118,7 +118,7 @@
 
 .subtitle1-align-self {
   font-size: 14px;
-  font-family: bold;
+  font-weight: bold;
   align-self: center;
   margin-top: 3px;
   margin-right: 126px;

@@ -6,10 +6,10 @@
                 class="yellow-border-left ivy-questionaire-child-panel-class" hideToggle>
                 <mat-expansion-panel-header class="task-panel-header-color-light-grey bold-font">
                     <mat-panel-title style="justify-content: space-between;">
-                        <div>
+                        <div class="d-flex pt-3">
                             <mat-icon *ngIf="currentQuestion.showIcon" [svgIcon]="currentQuestion.icon">
                                 {{currentQuestion.icon}}</mat-icon>
-                            {{currentQuestion.nodeText}}
+                                <p class="child-text">{{currentQuestion.nodeText}}</p>
                         </div>
                         <div>
                             {{currentQuestion.headerText}}

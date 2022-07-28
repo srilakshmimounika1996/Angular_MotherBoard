@@ -58,30 +58,30 @@ export class IvyQuestionnaireChildComponent implements OnInit {
 			if (answerObj.answerText.toLowerCase() === "accept") {
 				let allActionCodeObjects = []
 				let selectedActionCode = allActionCodeObjects.find(eachItem => eachItem.actonCodesAbbreviation.toLowerCase() == answerObj.answerActions.toLowerCase());
-				if (!!answerObj.answerActions && answerObj.answerActions.toLowerCase() == "newdebugflow") {
-					// this.newExpertDebug(answerObj);
-				} else if (answerObj.answerActions.toLowerCase() == "result code" && partsObj[0].toLowerCase() == "cid") {
+				// if (!!answerObj.answerActions && answerObj.answerActions.toLowerCase() == "newdebugflow") {
+				// 	// this.newExpertDebug(answerObj);
+				// } else if (answerObj.answerActions.toLowerCase() == "result code" && partsObj[0].toLowerCase() == "cid") {
 
-					this.questionsArray.map((eachQuestion) => {
-						eachQuestion.disabled = true
-					})
-					this.errorMsg.emit("Passed CID")
-					// this.actionService.handleAction({
-					// 	"type": "handleDellCarDebugPredictionActions",
-					// 	"methodType": "answerObjsSaveApi"
-					// }, this);
-				}
-				else if ((selectedActionCode?.processType == "replace" || selectedActionCode?.processType == "manual") && partsObj.length && partsObj[0] != 'S/A') {
-					this.openPredictionPopUp(answerObj);
-					this.questionsArray.map((eachQuestion) => {
-						eachQuestion.disabled = true
-					})
-				} else {
-					this.questionsArray.map((eachQuestion) => {
-						eachQuestion.disabled = true
-					})
-					this.transactionsOnClickOfAccept(answerObj, partsObj);
-				}
+				// 	this.questionsArray.map((eachQuestion) => {
+				// 		eachQuestion.disabled = true
+				// 	})
+				// 	this.errorMsg.emit("Passed CID")
+				// 	// this.actionService.handleAction({
+				// 	// 	"type": "handleDellCarDebugPredictionActions",
+				// 	// 	"methodType": "answerObjsSaveApi"
+				// 	// }, this);
+				// }
+				// else if ((selectedActionCode?.processType == "replace" || selectedActionCode?.processType == "manual") && partsObj.length && partsObj[0] != 'S/A') {
+				// 	this.openPredictionPopUp(answerObj);
+				// 	this.questionsArray.map((eachQuestion) => {
+				// 		eachQuestion.disabled = true
+				// 	})
+				// } else {
+				// 	this.questionsArray.map((eachQuestion) => {
+				// 		eachQuestion.disabled = true
+				// 	})
+				// 	this.transactionsOnClickOfAccept(answerObj, partsObj);
+				// }
 				this.answerObjsSaveApi()
 			}
 		} else {
@@ -91,32 +91,32 @@ export class IvyQuestionnaireChildComponent implements OnInit {
 
 		let nextQuestion;
 		if (!!answerObj.finalNode && answerObj.finalNode && !isLastNode) {
-			if (!!answerObj.answerActions && answerObj.answerActions.toLowerCase() == "newdebugflow") {
-				nextQuestion = {
-					"nodeText": answerObj.answerRef + " " + answerObj.answerActions + ": " + answerObj.answerNewDebugFlow,
-					"answers": [
-						{
-							"answerText": "Decline",
-							"answerActions": answerObj.answerActions,
-							"answerRef": answerObj.answerRef,
-							"answerNewDebugFlow": answerObj.answerNewDebugFlow,
-							"finalNode": true,
-							"lastNode": true
-						},
-						{
-							"answerText": "Accept",
-							"answerActions": answerObj.answerActions,
-							"answerRef": answerObj.answerRef,
-							"answerNewDebugFlow": answerObj.answerNewDebugFlow,
-							"finalNode": true,
-							"lastNode": true
-						}
-					]
-				};
-				if (!!nextQuestion) {
-					this.pushNextQuestion(nextQuestion)
-				}
-			} else {
+			// if (!!answerObj.answerActions && answerObj.answerActions.toLowerCase() == "newdebugflow") {
+			// 	nextQuestion = {
+			// 		"nodeText": answerObj.answerRef + " " + answerObj.answerActions + ": " + answerObj.answerNewDebugFlow,
+			// 		"answers": [
+			// 			{
+			// 				"answerText": "Decline",
+			// 				"answerActions": answerObj.answerActions,
+			// 				"answerRef": answerObj.answerRef,
+			// 				"answerNewDebugFlow": answerObj.answerNewDebugFlow,
+			// 				"finalNode": true,
+			// 				"lastNode": true
+			// 			},
+			// 			{
+			// 				"answerText": "Accept",
+			// 				"answerActions": answerObj.answerActions,
+			// 				"answerRef": answerObj.answerRef,
+			// 				"answerNewDebugFlow": answerObj.answerNewDebugFlow,
+			// 				"finalNode": true,
+			// 				"lastNode": true
+			// 			}
+			// 		]
+			// 	};
+			// 	if (!!nextQuestion) {
+			// 		this.pushNextQuestion(nextQuestion)
+			// 	}
+			// } else {
 				answerObj.answerDefect.map((x) => {
 					let partsString = "";
 					let locationString="";
@@ -158,7 +158,7 @@ export class IvyQuestionnaireChildComponent implements OnInit {
 						this.pushNextQuestion(nextQuestion)
 					}
 				})
-			}
+			// }
 		} else {
 			nextQuestion = this.parentTaskPanelData.expertDebugNodes.find((x) => x.nodeID === answerObj.answerRef);
 			if (!!nextQuestion) {

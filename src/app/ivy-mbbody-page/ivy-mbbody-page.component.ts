@@ -85,6 +85,7 @@ export class IvyMbBodyPageComponent implements OnInit {
           this.spinnerService.hide();
           this.parentTaskPanelData.push(v["data"]?.data[0]?.expertDebug);
           this.isExpertTaskPanelDisplay = true;
+          this.buttonDisable = true
         } else {
           this.spinnerService.hide();
           this.errorMessage = v.message

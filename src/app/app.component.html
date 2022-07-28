@@ -1,6 +1,6 @@
 <mat-drawer-container class="subprocess-containerClass">
-  <mat-drawer class="sidenav left-matdrawer col-md-2 col-sm-12"
-    style="background-color: #464C59;padding: 0 ;min-width: 16.666667%;" position="start" mode=side disableClose=true
+  <mat-drawer class="sidenav left-matdrawer col-lg-2 col-md-2 col-sm-12"
+    style="background-color: #464C59;padding: 0 ;" position="start" mode=side disableClose=true
     opened="true">
     <div class="flex_container stack_vertical">
       <!-- header -->
@@ -16,8 +16,7 @@
   </mat-drawer>
 
   <!--main Page Content-->
-  <mat-drawer-content autosize style="background: rgb(226, 231, 237);
-  margin-left: 322px;">
+  <mat-drawer-content class="col-lg-10 col-md-10" autosize style="background: rgb(226, 231, 237);">
     <app-ivy-mbbody-page (unitData)="unitData($event)"></app-ivy-mbbody-page>
   </mat-drawer-content>
 </mat-drawer-container>
